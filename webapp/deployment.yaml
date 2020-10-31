@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: halloween
+  namespace: halloween
+  labels:
+    app: halloween
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: halloween
+  template:
+    metadata:
+      labels:
+        app: halloween
+    spec:
+      containers:
+      - name: halloween
+        image: brendanburns/halloween:v1
+        command:
+        - /app/server
+        - -d
+        - /app
+        ports:
+        - containerPort: 8000
